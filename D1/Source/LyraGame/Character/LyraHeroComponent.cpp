@@ -287,7 +287,6 @@ void ULyraHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputCompo
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Look_Mouse, ETriggerEvent::Triggered, this, &ThisClass::Input_LookMouse, /*bLogIfNotFound=*/ false);
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Look_Stick, ETriggerEvent::Triggered, this, &ThisClass::Input_LookStick, /*bLogIfNotFound=*/ false);
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Crouch, ETriggerEvent::Triggered, this, &ThisClass::Input_Crouch, /*bLogIfNotFound=*/ false);
-					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_AutoRun, ETriggerEvent::Triggered, this, &ThisClass::Input_AutoRun, /*bLogIfNotFound=*/ false);
 				}
 			}
 		}
@@ -454,18 +453,6 @@ void ULyraHeroComponent::Input_Crouch(const FInputActionValue& InputActionValue)
 	if (ALyraCharacter* Character = GetPawn<ALyraCharacter>())
 	{
 		Character->ToggleCrouch();
-	}
-}
-
-void ULyraHeroComponent::Input_AutoRun(const FInputActionValue& InputActionValue)
-{
-	if (APawn* Pawn = GetPawn<APawn>())
-	{
-		if (ALyraPlayerController* Controller = Cast<ALyraPlayerController>(Pawn->GetController()))
-		{
-			// Toggle auto running
-			Controller->SetIsAutoRunning(!Controller->GetIsAutoRunning());
-		}	
 	}
 }
 
