@@ -8,6 +8,8 @@
 #include "ModularCharacter.h"
 #include "Teams/LyraTeamAgentInterface.h"
 
+#include "Interaction/D1Interactable.h"
+
 #include "LyraCharacter.generated.h"
 
 class AActor;
@@ -224,4 +226,20 @@ private:
 
 	UFUNCTION()
 	void OnRep_MyTeamID(FGenericTeamId OldTeamID);
+
+protected:
+	UPROPERTY(EditDefaultsOnly, Category="Info")
+	FD1InteractionInfo InteractionInfo;
+
+public:
+	float BaseUnscaledCapsuleHalfHeight = 0.f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float BaseFallDamage = 3.f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float MaxFallDamage = 10.f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float FallDamageVelocityZThreshold = 800.f;
 };

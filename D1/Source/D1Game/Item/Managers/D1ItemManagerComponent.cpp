@@ -2,7 +2,7 @@
 
 #include "D1EquipmentManagerComponent.h"
 #include "D1InventoryManagerComponent.h"
-//#include "Actors/D1PickupableItemBase.h"
+#include "Actors/D1PickupableItemBase.h"
 #include "Components/CapsuleComponent.h"
 #include "Data/D1ItemData.h"
 #include "GameFramework/Character.h"
@@ -314,7 +314,7 @@ void UD1ItemManagerComponent::Server_DropItemFromInventory_Implementation(UD1Inv
 	if (FromItemCount <= 0)
 		return;
 	
-	//if (TryDropItem(FromItemInstance, FromItemCount))
+	if (TryDropItem(FromItemInstance, FromItemCount))
 	{
 		FromInventoryManager->RemoveItem_Unsafe(FromItemSlotPos, FromItemCount);
 	}
@@ -339,13 +339,13 @@ void UD1ItemManagerComponent::Server_DropItemFromEquipment_Implementation(UD1Equ
 	if (FromItemCount <= 0)
 		return;
 	
-	//if (TryDropItem(FromItemInstance, FromItemCount))
+	if (TryDropItem(FromItemInstance, FromItemCount))
 	{
 		FromEquipmentManager->RemoveEquipment_Unsafe(FromEquipmentSlotType, FromItemCount);
 	}
 }
 
-/*
+
 bool UD1ItemManagerComponent::TryPickItem(AD1PickupableItemBase* PickupableItemActor)
 {
 	if (HasAuthority() == false)
@@ -480,7 +480,7 @@ bool UD1ItemManagerComponent::TryDropItem(UD1ItemInstance* FromItemInstance, int
 	
 	return false;
 }
-*/
+
 
 void UD1ItemManagerComponent::AddAllowedComponent(UActorComponent* ActorComponent)
 {
