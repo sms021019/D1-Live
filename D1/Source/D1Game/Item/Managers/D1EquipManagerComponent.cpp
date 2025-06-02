@@ -3,7 +3,7 @@
 #include "AbilitySystemGlobals.h"
 #include "D1CosmeticManagerComponent.h"
 #include "D1EquipmentManagerComponent.h"
-#include "LyraGameplayTags.h"
+#include "D1GameplayTags.h"
 #include "Engine/ActorChannel.h"
 #include "Item/D1ItemInstance.h"
 #include "Item/Fragments/D1ItemFragment_Equipable.h"
@@ -12,7 +12,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Actors/D1EquipmentBase.h"
 #include "AbilitySystem/LyraAbilitySystemComponent.h"
-//#include "AbilitySystem/Attributes/D1CombatSet.h"
+#include "AbilitySystem/Attributes/D1CombatSet.h"
 #include "Character/LyraCharacter.h"
 #include "Player/LyraPlayerController.h"
 //#include "PocketWorld/D1PocketStage.h"
@@ -47,7 +47,6 @@ void FD1EquipEntry::Equip()
 
 	if (EquipManager->GetOwner()->HasAuthority())
 	{
-		/* - TEMP Rookiss
 		if (ULyraAbilitySystemComponent* ASC = Cast<ULyraAbilitySystemComponent>(EquipManager->GetAbilitySystemComponent()))
 		{
 			// Remove Previous Ability
@@ -83,7 +82,6 @@ void FD1EquipEntry::Equip()
 			
 			BaseStatHandle = ASC->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data);
 		}
-		*/
 
 		if (EquippableFragment->EquipmentType == EEquipmentType::Weapon || EquippableFragment->EquipmentType == EEquipmentType::Utility)
 		{
@@ -199,7 +197,7 @@ void FD1EquipEntry::Equip()
 			}
 
 			UAbilitySystemComponent* ASC = Character->GetAbilitySystemComponent();
-			if (ASC && ASC->HasMatchingGameplayTag(LyraGameplayTags::Status_Interact) == false)
+			if (ASC && ASC->HasMatchingGameplayTag(D1GameplayTags::Status_Interact) == false)
 			{
 				UAnimMontage* EquipMontage = ULyraAssetManager::GetAssetByPath<UAnimMontage>(AttachmentFragment->EquipMontage);
 				if (UAnimInstance* AnimInstance = MeshComponent->GetAnimInstance())

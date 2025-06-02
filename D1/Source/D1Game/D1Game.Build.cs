@@ -73,6 +73,7 @@ public class D1Game : ModuleRules
 				"AudioModulation",
 				"EngineSettings",
 				"DTLSHandlerComponent",
+				"NavigationSystem",
 			}
 		);
 
